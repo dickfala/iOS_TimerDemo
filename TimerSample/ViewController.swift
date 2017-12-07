@@ -10,6 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    @IBAction func pauseBtnAction(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func playBtnAction(_ sender: UIBarButtonItem) {
+    }
+    
+    @IBAction func resetAction(_ sender: UIBarButtonItem) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
