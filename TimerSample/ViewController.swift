@@ -10,20 +10,52 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var timer = Timer()
+    var time : Int = 0
+    var isStart : Bool = false
+    
     @IBOutlet weak var timerLabel: UILabel!
     
     @IBAction func pauseBtnAction(_ sender: UIBarButtonItem) {
+        
+        timer.invalidate()
+        isStart = false
     }
     
     @IBAction func playBtnAction(_ sender: UIBarButtonItem) {
+        
+        if !isStart {
+            
+             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(processTimer), userInfo: nil, repeats: true)
+            // instant fire timer.
+            timer.fire()
+            isStart = true
+            
+        }else{
+            
+            timer.invalidate()
+            isStart = false
+        }
+       
     }
     
+    @objc  func processTimer(){
+        time += 1
+        timerLabel.text = "\(time)"
+    }
+    
+    
     @IBAction func resetAction(_ sender: UIBarButtonItem) {
+    
+        timer.invalidate()
+        time = 0
+        isStart = false
+        timerLabel.text = "0"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
